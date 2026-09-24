@@ -1,35 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="styles/quiz.css">
 </head>
-<body class="page">
+
+<body>
     <main class="quiz">
-        <h1 class="quiz__title">Quiz</h1>
-        <p class="quiz__subtitle">Teste seu conhecimento com nosso quiz!</p>
-        <div class="quiz__score">
-            <p class="quiz__score-text">Pontuação <span id="score" class="quiz__score-value">0</span></p>
+        <header class="quiz__header">
+            <h1 class="quiz__title">Quiz</h1>
+            <p class="quiz__tagline">Teste seus conhecimentos com nosso quiz!</p>
+        </header>
+
+        <div class="quiz__scoreboard">
+            <p class="quiz__score">Pontuação: <span class="quiz__score-value" id="score">0</span></p>
         </div>
 
-        <button id="start-quiz" class="quiz__start">Iniciar Quiz</button>
-        
-        <section id="question-1" class="quiz__question quiz__question--hidden">
-            <p class="quiz__question-label">Questão 1</p>
+        <button class="quiz__btn quiz__btn--start" id="start-quiz" type="button">
+            Iniciar Quiz
+        </button>
+
+        <section class="quiz__question quiz__question--hidden" id="question-1">
+            <p class="quiz__question-number">Questão 1</p>
             <p class="quiz__question-text">Qual é a capital do Brasil?</p>
-            <div class="quiz__options">
-                <button class="quiz__option">São Paulo</button>
-                <button class="quiz__option">Rio de Janeiro</button>
-                <button class="quiz__option">Brasília</button>
-                <button class="quiz__option">Tocantins</button>
-                <button class="quiz__option">Paraná</button>
-                <button class="quiz__option">Santa Catarina</button>
+
+            <div class="quiz__answers">
+                <button class="quiz__answer" type="button">
+                    <span class="quiz__answer-text">São Paulo</span>
+                </button>
+                <button class="quiz__answer" type="button">
+                    <span class="quiz__answer-text">Rio de Janeiro</span>
+                </button>
+                <button class="quiz__answer" type="button">
+                    <span class="quiz__answer-text">Brasília</span>
+                </button>
+                <button class="quiz__answer" type="button">
+                    <span class="quiz__answer-text">Tocantins</span>
+                </button>
+                <button class="quiz__answer" type="button">
+                    <span class="quiz__answer-text">Paraná</span>
+                </button>
+                <button class="quiz__answer" type="button">
+                    <span class="quiz__answer-text">Santa Catarina</span>
+                </button>
             </div>
         </section>
     </main>
-
     <script src="scripts/quiz.js"></script>
 </body>
+
 </html>
