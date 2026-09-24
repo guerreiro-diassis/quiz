@@ -144,10 +144,6 @@
   border-radius: 1.25rem;
 }
 
-.quiz__question--hidden {
-  display: none;
-}
-
 .quiz__question-label {
   align-self: center;
   padding: 0.25rem 0.9rem;
