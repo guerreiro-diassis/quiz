@@ -1,85 +1,47 @@
-const startQuizButton = document.querySelector('#start-quiz');
-const finishQuizButton = document.querySelector('#finish-quiz');
+const startQuizButton = document.querySelector("#start-quiz"); 
+const finishQuizButton = document.querySelector("#finish-quiz") 
+const scoreBoard = document.querySelector('.quiz__scoreboard') 
+const score = document.querySelector('#score') 
 
-const scoreBoard = document.querySelector('.quiz__scoreboard')
-const score = document.querySelector('#score')
+const questions = document.querySelectorAll('.quiz__question') 
 
-const question1 = document.querySelector('#question1');
-const question2 = document.querySelector('#question2');
-const question3 = document.querySelector('#question3');
+let totalScore = 0; 
 
-startQuizButton.addEventListener('click', () => {
-// escuta botão e o esconde
-  startQuizButton.classList.add('quiz__btn--hidden')
 
-// escuta botão e faz com que pergunta apareça  
-  question1.classList.remove('quiz__question--hidden') 
-});
+startQuizButton.addEventListener('click', () => { 
+startQuizButton.classList.add('quiz__btn--hidden') 
+questions[0].classList.remove('quiz__question--hidden') 
+}); 
 
-let totalScore = 0;
+questions.forEach((question, index) => { 
+question.addEventListener('submit', (event) => { 
+event.preventDefault() 
+ 
+const isCorrect = event.submitter.hasAttribute('data-correct') 
 
-// pega primeira pergunta e escuta evento de submit 
-question1.addEventListener('submit', (event) => {
-// previne comportamento 
-    event.preventDefault()
+if (isCorrect) { 
+event.submitter.classList.add('quiz__option--correct') 
+totalScore = totalScore + 10 
+} else { 
+event.submitter.classList.add('quiz__option--wrong') 
+} 
 
-// verifica se a resposta é correta, vendo se o atributo data-correct está presente
-    const isCorrect = event.submitter.hasAttribute('data-correct')
-    if (isCorrect) {
-        event.submitter.classList.add('quiz__option--correct')
-        totalScore = totalScore + 1;
-    } else {
-        event.submitter.classList.add('quiz__option--wrong')
-    }
+question.querySelectorAll('.quiz__option').forEach(answer => { 
+answer.setAttribute('disabled', true) 
+}) 
 
-// para desabilitar todas as opções de resposta
-    question1.querySelectorAll('.quiz__option').forEach(answer => {
-        answer.setAttribute('disabled', true)
-    });
+const nextQuestion = questions[index + 1] 
 
-// faz com que a próxima pergunta apareça
-    question2.classList.remove('quiz__question--hidden')
-})
+if (nextQuestion) { 
+nextQuestion.classList.remove('quiz__question--hidden') 
+} else { 
+score.textContent = totalScore 
+scoreBoard.classList.remove('quiz__scoreboard--hidden') 
+finishQuizButton.classList.remove('quiz__btn--hidden') 
+} 
+}); 
+}); 
 
-question2.addEventListener('submit', (event) => {
-    event.preventDefault()
-    
-    const isCorrect = event.submitter.hasAttribute('data-correct')
-    if (isCorrect) {
-        event.submitter.classList.add('quiz__option--correct')
-        totalScore = totalScore + 1;
-    } else {
-        event.submitter.classList.add('quiz__option--wrong')
-    }
-    
-    question2.querySelectorAll('.quiz__option').forEach(answer => {
-        answer.setAttribute('disabled', true)
-    });
-    
-    question3.classList.remove('quiz__question--hidden')
-});
-
-question3.addEventListener('submit', (event) => {
-    event.preventDefault()
-
-    const isCorrect = event.submitter.hasAttribute('data-correct')
-    if (isCorrect) {
-        event.submitter.classList.add('quiz__option--correct')
-        totalScore = totalScore + 1;
-    } else {
-        event.submitter.classList.add('quiz__option--wrong')
-    }
-    
-    question3.querySelectorAll('.quiz__option').forEach(answer => {
-        answer.setAttribute('disabled', true)
-    });
-    
-    score.textContent = totalScore;
-    scoreBoard.classList.remove('quiz__scoreboard--hidden')
-
-    finishQuizButton.classList.remove('quiz__btn--hidden')
-});
-
-finishQuizButton.addEventListener('click', () => {
-    window.location.reload();
+finishQuizButton.addEventListener('click', () => { 
+window.location.reload() 
 })
