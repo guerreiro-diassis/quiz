@@ -260,7 +260,8 @@
 /* modifiers - visibilidade durante interação */
 .quiz__score, 
 .quiz__btn--hidden,
-.quiz__question--hidden {
+.quiz__question--hidden,
+.quiz__scoreboard--hidden {
   display: none;
 }
 
